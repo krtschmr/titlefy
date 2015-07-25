@@ -54,3 +54,8 @@ Simply set the titletag from your controller like this
 # TODO
 - Multi Namespacing Support
 - Add Params to support something like this "show: Item Number %(id)"
+
+
+
+thanks to [phillipp](https://github.com/phillipp)
+
