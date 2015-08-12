@@ -98,4 +98,15 @@ Simply set the titletag from your controller like this
 0.2.0 rewritten code from 2012
 
 
+
+
+
+
+
+
+###### misc
+This project is licenced under the MIT license.
+
+
+
 thanks to [phillipp](https://github.com/phillipp)
