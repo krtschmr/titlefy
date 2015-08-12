@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["github@krtschmr.de"]
 
   spec.summary       = %q{Extract your titletags from I18n backend.}
-  spec.description   = %q{Set your title-tag content based on I18n locales. Just add title_tag key to your YML File and the magic begins. Lookup for Namespace|Controller|ActionName or Controller|Actionname or RouteName or Default}
+  spec.description   = %q{Set your title-tag content based on I18n locales. Just add title_tag key to your YML File and the magic begins. Lookup for Namespace|Controller|ActionName or Controller|Actionname or RouteName or Default. Also supports passing variables into the title tag}
   spec.homepage      = ""
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
