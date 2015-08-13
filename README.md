@@ -60,7 +60,7 @@ For Admin::DashboardController
           show: Details of user: {{@user.name}}
           videos:
             index: Videos of user: {{@user.name}}
-            show: Video "{{@video.name}} from {{@user.name}} posted on {{@video.time}}"
+            show: Video {{@video.name}} from {{@user.name}} posted on {{@video.time}}
 
 
 It also supports any kind of resource-controller where the object is called "resource"
