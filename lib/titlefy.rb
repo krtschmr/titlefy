@@ -24,8 +24,8 @@ module Titlefy
       lookup = "title_tags"
       lookup << ".#{@titlefy_prefix}" if @titlefy_prefix
 
-      p "#{lookup}.#{namespace}.#{controller_name}.#{action_name}"
-      p "#{lookup}.#{controller_name}.#{action_name}"
+      p "#{lookup}.#{namespace}.#{controller_name}.#{action_name}" if @debug
+      p "#{lookup}.#{controller_name}.#{action_name}" if @debug
 
       title = I18n.t "#{lookup}.#{namespace}.#{controller_name}.#{action_name}", default: ""
       title = I18n.t "#{lookup}.#{controller_name}.#{action_name}", default: ""                if title.empty?
