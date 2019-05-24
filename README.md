@@ -1,7 +1,7 @@
 # Titlefy
 
-Awesome title tag magic with I18n support, passing variables and default title. 
-No more unnecessary lines in each controller method, no more setting title tags out of a view. 
+Awesome title tag magic with I18n support, passing variables and default title.
+No more unnecessary lines in each controller method, no more setting title tags out of a view.
 Avoid messy code - be slim and dry - kepp just one central place to control all your title tags!
 
 ## Usage
@@ -11,7 +11,7 @@ Define your tiltetags within one structured file. Just simply do the following:
 gem "titlefy", git: 'git://github.com/krtschmr/titlefy.git'
 ```
 
-Using @page_title into your HTML 
+Using @page_title into your HTML
 ````
   <title><%=@page_title %></title>
 ````
@@ -32,7 +32,7 @@ Create an YML file and add the :title_tags scope. Define what you need
         routes:
           list_items_path: Index of Items
           order_path: Order at our Webshop
-    
+
 #### TitleTag by Controller/Action      
     en:
       title_tags:
@@ -45,12 +45,12 @@ For Admin::DashboardController
 
     en:
       title_tags:
-        admin: 
+        admin:
           dashboard_conroller:
             index: Overview
             stats: Detailed Stats
-            
-            
+
+
 
 #### Using variables in title tag
 
@@ -67,7 +67,7 @@ It also supports any kind of resource-controller where the object is called "res
 
     en:
       title_tags:  
-        routes: 
+        routes:
           dogs_path: "{{resource.funky_dog_name}} - my-petwebsite"
           cats_path: "{{resource.funky_cat_name}} - my-petwebsite"
 
@@ -75,8 +75,8 @@ It also supports any kind of resource-controller where the object is called "res
 If your title-tag starts with a placeholder its neccessary to **start with quotes** to keep valid YML.
 
 
-            
-Lookup order is Namespace/Controller/Action, Controller/Action, RouteName, Default, RaillsAppName. 
+
+Lookup order is Namespace/Controller/Action, Controller/Action, RouteName, Default, RaillsAppName.
 Simply set the titletag from your controller like this
 ````
   def index
@@ -85,12 +85,33 @@ Simply set the titletag from your controller like this
 ````
 
 
+You can add dynamic extra lookups:
+````
+  ApplicationController
+    before_action do
+      Titlefy.config.extra_lookup = current_currency
+    end  
+    def current_currency
+      #...
+    end
+
+  # This will first lookup based on current_currency
+  # "Titlefy Lookup: title_tags.object.home.index.eur"
+  # "Titlefy Lookup: title_tags.object.home.index"
+  # "Titlefy Lookup: title_tags.home.index.eur"
+  # "Titlefy Lookup: title_tags.home.index"
+
+````
+
+
+
+
 # TODO
 - Multi Namespacing Support
 
 ### Changelog
 
-0.3.0 
+0.3.0
  - supports passing of variables
  - changed lookup path of routes
  - changed @title to @page_title

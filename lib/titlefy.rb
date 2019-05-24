@@ -1,4 +1,5 @@
 require "titlefy/version"
+require 'titlefy/config'
 require 'active_support/concern'
 
 module Titlefy
@@ -6,6 +7,12 @@ module Titlefy
 
   def titlefy(*args)
     send :include, InstanceMethods
+  end
+
+  def self.config
+    @@config ||= Titlefy::Config.instance
+    @@config.extra_lookup ||= nil
+    @@config
   end
 
 
@@ -24,13 +31,24 @@ module Titlefy
       lookup = "title_tags"
       lookup << ".#{@titlefy_prefix}" if @titlefy_prefix
 
-      p "#{lookup}.#{namespace}.#{controller_name}.#{action_name}" if @debug
-      p "#{lookup}.#{controller_name}.#{action_name}" if @debug
+      paths = [
+        "#{lookup}.#{namespace}.#{controller_name}.#{action_name}.#{Titlefy.config.extra_lookup}",
+        "#{lookup}.#{namespace}.#{controller_name}.#{action_name}",
+        "#{lookup}.#{controller_name}.#{action_name}.#{Titlefy.config.extra_lookup}",
+        "#{lookup}.#{controller_name}.#{action_name}"
+      ]
+      title = nil
+      paths.each do |path|
+        p "Titlefy Lookup: #{path}" if Rails.env.development?
+        title = I18n.t(path ,default: "")
+        break if title.present?
+      end
 
-      title = I18n.t "#{lookup}.#{namespace}.#{controller_name}.#{action_name}", default: ""
-      title = I18n.t "#{lookup}.#{controller_name}.#{action_name}", default: ""                if title.empty?
-      title = I18n.t route_name,  scope: [:title_tags, :routes], default: ""                    if title.empty? and route_name != ""
-      title = default_title if title == ""
+      if title.empty? and route_name != ""
+        title = I18n.t route_name,  scope: [:title_tags, :routes], default: ""
+      elsif title == ""
+        title = default_title
+      end
 
       title.scan(/\{\{.*?\}\}/).each do |replace|
         #{{@game.name}} => @game.name

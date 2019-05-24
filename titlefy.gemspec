@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "titlefy"
   spec.version       = Titlefy::VERSION
   spec.authors       = ["Tim Kretschmer"]
-  spec.email         = ["github@krtschmr.de"]
+  spec.email         = ["tim@krtschmr.de"]
 
   spec.summary       = %q{Extract your titletags from I18n backend.}
   spec.description   = %q{Set your title-tag content based on I18n locales. Just add title_tag key to your YML File and the magic begins. Lookup for Namespace|Controller|ActionName or Controller|Actionname or RouteName or Default. Also supports passing variables into the title tag}
