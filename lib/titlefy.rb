@@ -23,7 +23,9 @@ module Titlefy
     end
 
     def render(*args)
-      set_title_tag unless @page_title
+      begin
+        set_title_tag unless @page_title
+      end
       super
     end
 
@@ -49,6 +51,8 @@ module Titlefy
       elsif title == ""
         title = default_title
       end
+
+      title = title.to_s
 
       title.scan(/\{\{.*?\}\}/).each do |replace|
         #{{@game.name}} => @game.name
