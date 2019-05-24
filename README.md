@@ -111,6 +111,9 @@ You can add dynamic extra lookups:
 
 ### Changelog
 
+0.5.0
+  - added `extra_lookup `
+
 0.3.0
  - supports passing of variables
  - changed lookup path of routes
